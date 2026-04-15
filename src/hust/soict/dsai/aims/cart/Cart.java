@@ -25,6 +25,24 @@ public class Cart {
         System.out.println("The cart is almost full!");
     }
 }
+    // them so luong dvd tuy y
+    public void addDigitalVideoDisc(DigitalVideoDisc... dvds) {
+        for (DigitalVideoDisc dvd : dvds) {
+            if (qtyOrdered < MAX_NUMBERS_ORDERD) {
+                itemsOrdered[qtyOrdered] = dvd;
+                qtyOrdered++;
+            } else {
+                System.out.println("The cart is full");
+                break;
+            }
+        }
+        System.out.println("Added discs to cart");
+    }
+    // them 2 dia dvd
+    public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
+        addDigitalVideoDisc(dvd1);
+        addDigitalVideoDisc(dvd2);
+    }
     // xoa phan tu duoc truyen vao qua tham so khoi danh sach
     public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
         boolean found = false;
