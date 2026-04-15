@@ -7,15 +7,24 @@ public class DigitalVideoDisc {
     private String director;
     private int length;
     private float cost;
+    
+    private int id; // ID riêng của từng DVD
+    
+    // CLASS MEMBER (thuộc lớp, chung cho tất cả)
+    private static int nbDigitalVideoDiscs = 0;
 
     public DigitalVideoDisc(String title) {
         this.title = title;
+        nbDigitalVideoDiscs++; // Tăng bộ đếm
+        this.id = nbDigitalVideoDiscs; // Gán ID
     }
 
     public DigitalVideoDisc(String category, String title, float cost) {
         this.category = category;
         this.title = title;
         this.cost = cost;
+        nbDigitalVideoDiscs++; // Tăng bộ đếm
+        this.id = nbDigitalVideoDiscs; // Gán ID
     }
 
     public DigitalVideoDisc(String director, String category, String title, float cost) {
@@ -23,6 +32,8 @@ public class DigitalVideoDisc {
         this.category = category;
         this.title = title;
         this.cost = cost;
+        nbDigitalVideoDiscs++; // Tăng bộ đếm
+        this.id = nbDigitalVideoDiscs; // Gán ID
     }
 
     public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
@@ -31,6 +42,17 @@ public class DigitalVideoDisc {
         this.director = director;
         this.length = length;
         this.cost = cost;
+        nbDigitalVideoDiscs++; // Tăng bộ đếm
+        this.id = nbDigitalVideoDiscs; // Gán ID
+    }
+    // Getter cho ID
+    public int getId() {
+        return id;
+    }
+    
+    // Getter cho số lượng DVD (static method)
+    public static int getNbDigitalVideoDiscs() {
+        return nbDigitalVideoDiscs;
     }
    
     public String getTitle() { return title; }
