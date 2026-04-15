@@ -68,4 +68,10 @@ public class DigitalVideoDisc {
 
     public float getCost() { return cost; }
     public void setCost(float cost) { this.cost = cost; }
+    
+      @Override
+    public String toString() {
+        return "DVD - " + title + " - " + category + " - " + director + 
+               " - " + length + ": " + cost + " $";
+    }
 }
