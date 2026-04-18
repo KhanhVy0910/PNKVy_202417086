@@ -99,5 +99,36 @@ public class Cart {
         System.out.println("Total cost: " + totalCost + " $");
         System.out.println("***************************************************");
     }
+    // Tìm theo ID
+    public void searchById(int id) {
+        boolean found = false;
+        for (int i = 0; i < qtyOrdered; i++) {
+            if (itemsOrdered[i].getId() == id) {
+                System.out.println("Found: " + itemsOrdered[i].toString());
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("No match found for ID: " + id);
+        }
+    }
+    
+    // Tìm theo title
+    public void searchByTitle(String title) {
+        boolean found = false;
+        System.out.println("Search results for \"" + title + "\":");
+        
+        for (int i = 0; i < qtyOrdered; i++) {
+            if (itemsOrdered[i].isMatch(title)) {
+                System.out.println((i + 1) + ". " + itemsOrdered[i].toString());
+                found = true;
+            }
+        }
+        
+        if (!found) {
+            System.out.println("No match found!");
+        }
+    }
     
 }
