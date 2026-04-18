@@ -1,0 +1,32 @@
+
+Câu hỏi 1: Sau khi gọi swap(jungleDVD, cinderellaDVD) tại sao title của hai đối tượng vẫn không thay đổi?
+
+Trả lời: 
+- Java là ngôn ngữ "pass by value" (truyền theo giá trị)
+- Khi gọi swap(), Java truyền BẢN SAO của các tham chiếu o1, o2
+- Trong swap(), ta chỉ hoán đổi BẢN SAO này
+- Các biến gốc jungleDVD và cinderellaDVD KHÔNG bị ảnh hưởng
+- Khi thoát khỏi swap(), các bản sao bị hủy, không có gì thay đổi
+
+Câu hỏi 2: Sau khi gọi changeTitle() tại sao title của jungleDVD lại thay đổi?
+
+Trả lời:
+- Mặc dù Java truyền BẢN SAO của tham chiếu dvd
+- Nhưng bản sao này vẫn TRỎ ĐẾN CÙNG ĐỐI TƯỢNG với jungleDVD
+- Khi gọi dvd.setTitle(), ta thay đổi đối tượng mà cả hai cùng trỏ tới
+- Dòng "dvd = new DigitalVideoDisc(oldTitle)" chỉ thay đổi bản sao local
+- Không ảnh hưởng đến jungleDVD gốc
+
+Phương thức swap() ĐÚNG:
+
+// Không thể viết swap() trực tiếp cho Object trong Java
+// Giải pháp: Tạo wrapper class hoặc swap từng thuộc tính
+
+public static void correctSwap(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
+    // Swap từng thuộc tính
+    String tmpTitle = dvd1.getTitle();
+    dvd1.setTitle(dvd2.getTitle());
+    dvd2.setTitle(tmpTitle);
+    
+    // Tương tự cho các thuộc tính khác...
+}
