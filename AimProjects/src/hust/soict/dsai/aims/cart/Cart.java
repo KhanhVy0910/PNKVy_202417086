@@ -1,6 +1,6 @@
 
 package hust.soict.dsai.aims.cart;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+import hust.soict.dsai.aims.media.disc.DigitalVideoDisc;
 public class Cart {
     public static final int MAX_NUMBERS_ORDERD = 20;
     private DigitalVideoDisc itemsOrdered[] = 
