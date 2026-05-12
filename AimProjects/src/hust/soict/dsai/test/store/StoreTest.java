@@ -1,5 +1,5 @@
 package hust.soict.dsai.test.store;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+import hust.soict.dsai.aims.media.disc.DigitalVideoDisc;
 import hust.soict.dsai.aims.store.Store;
 
 
