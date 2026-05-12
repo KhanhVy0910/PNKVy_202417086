@@ -10,5 +10,14 @@ public class Track {
     }
     public String getTitle() { return title; }
     public int getLength() { return length;}
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Track) {
+            Track track = (Track) obj;
+            return title.equals(track.getTitle()) && length == track.getLength();
+        }
+        return false;
+    }
 }
 

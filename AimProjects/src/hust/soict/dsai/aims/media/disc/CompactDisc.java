@@ -1,5 +1,36 @@
 package hust.soict.dsai.aims.media.disc;
 
-public class CompactDisc extends Disc {
+import java.util.ArrayList;
 
+public class CompactDisc extends Disc {
+    private String artist;
+    private ArrayList<Track> tracks = new ArrayList<Track>();
+
+    // Chỉ tạo getter cho artist
+    public String getArtist() { return artist; }
+
+    public void addTrack(Track track) {
+        if (tracks.contains(track)) {
+            System.out.println("Track đã tồn tại trong CD!");
+        } else {
+            tracks.add(track);
+        }
+    }
+
+    public void removeTrack(Track track) {
+        if (!tracks.contains(track)) {
+            System.out.println("Track không tồn tại trong CD!");
+        } else {
+            tracks.remove(track);
+        }
+    }
+
+    // Độ dài CD = tổng độ dài tất cả các track
+    public int getLength() {
+        int total = 0;
+        for (Track t : tracks) {
+            total += t.getLength();
+        }
+        return total;
+    }
 }
