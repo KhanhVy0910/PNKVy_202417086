@@ -1,34 +1,26 @@
 package hust.soict.dsai.aims.media.disc;
 
-public class DigitalVideoDisc extends Disc {
+public class DigitalVideoDisc extends Disc implements Playable {
     private static int nbDigitalVideoDiscs = 0;
 
     public DigitalVideoDisc(String title) {
-        setTitle(title);
+        super(title);
         assignId();
     }
 
-    public DigitalVideoDisc(String category, String title, float cost) {
-        setCategory(category);
-        setTitle(title);
-        setCost(cost);
+    public DigitalVideoDisc(String title, String category, float cost) {
+        super(title, category, cost);
         assignId();
     }
 
-    public DigitalVideoDisc(String director, String category, String title, float cost) {
+    public DigitalVideoDisc(String title, String category, String director, float cost) {
+        super(title, category, cost);
         setDirector(director);
-        setCategory(category);
-        setTitle(title);
-        setCost(cost);
         assignId();
     }
 
     public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-        setTitle(title);
-        setCategory(category);
-        setDirector(director);
-        setLength(length);
-        setCost(cost);
+        super(title, category, director, length, cost);
         assignId();
     }
 
@@ -49,5 +41,10 @@ public class DigitalVideoDisc extends Disc {
 
     public boolean isMatch(String title) {
         return getTitle().toLowerCase().contains(title.toLowerCase());
+    }
+    @Override
+    public void play() {
+        System.out.println("Playing DVD: " + this.getTitle());
+        System.out.println("DVD length: " + this.getLength());
     }
 }

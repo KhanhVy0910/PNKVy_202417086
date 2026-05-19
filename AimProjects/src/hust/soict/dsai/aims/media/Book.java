@@ -7,7 +7,15 @@ public class Book extends Media {
     private List<String> authors = new ArrayList<String>();
 
     public Book() {
-        // Constructor mac dinh
+        super();
+    }
+
+    public Book(String title) {
+        super(title);
+    }
+
+    public Book(String title, String category, float cost) {
+        super(title, category, cost);
     }
 
     public List<String> getAuthors() {
@@ -28,5 +36,11 @@ public class Book extends Media {
         if (authors.contains(authorName)) {
             authors.remove(authorName);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Book - " + getTitle() + " - " + getCategory() + " - "
+                + authors + ": " + getCost() + " $";
     }
 }
