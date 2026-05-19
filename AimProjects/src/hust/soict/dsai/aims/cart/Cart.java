@@ -1,8 +1,10 @@
 package hust.soict.dsai.aims.cart;
 
 import hust.soict.dsai.aims.media.Media;
+import hust.soict.dsai.aims.media.disc.DigitalVideoDisc;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Cart {
     public static final int MAX_NUMBERS_ORDERD = 20;
@@ -34,6 +36,38 @@ public class Cart {
             total += media.getCost();
         }
         return total;
+    }
+
+    public void sortByTitleCost() {
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
+    }
+
+    public void sortByCostTitle() {
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
+    }
+
+    public Media searchMediaByTitle(String title) {
+        String normalizedTitle = title.trim();
+        for (Media media : itemsOrdered) {
+            if (media.getTitle().equalsIgnoreCase(normalizedTitle)) {
+                return media;
+            }
+        }
+        return null;
+    }
+
+    public int getNumberOfDVDs() {
+        int count = 0;
+        for (Media media : itemsOrdered) {
+            if (media instanceof DigitalVideoDisc) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public void clear() {
+        itemsOrdered.clear();
     }
 
     public void displayCart() {

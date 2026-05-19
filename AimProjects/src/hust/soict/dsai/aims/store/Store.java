@@ -19,6 +19,12 @@ public class Store {
         }
     }
 
+    public void addMediaSilently(Media media) {
+        if (!itemsInStore.contains(media) && itemsInStore.size() < MAX_ITEMS_IN_STORE) {
+            itemsInStore.add(media);
+        }
+    }
+
     public void removeMedia(Media media) {
         if (itemsInStore.contains(media)) {
             itemsInStore.remove(media);
@@ -34,5 +40,15 @@ public class Store {
             System.out.println((i + 1) + ". " + itemsInStore.get(i).toString());
         }
         System.out.println("***********************");
+    }
+
+    public Media searchByTitle(String title) {
+        String normalizedTitle = title.trim();
+        for (Media media : itemsInStore) {
+            if (media.getTitle().equalsIgnoreCase(normalizedTitle)) {
+                return media;
+            }
+        }
+        return null;
     }
 }
