@@ -1,0 +1,9 @@
+1. Top-level container:
+   - AWT: Frame
+   - Swing: JFrame
+
+2. Tên component:
+   - AWT: Label → Swing: JLabel
+   - AWT: TextField → Swing: JTextField
+   - AWT: Button → Swing: JButton
+   - AWT: Panel → Swing: JPanel
