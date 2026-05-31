@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="480.0" prefWidth="640.0"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="hust.soict.dsai.javafx.fxml.PainterController">
+    <padding>
+        <Insets top="8.0" right="8.0" bottom="8.0" left="8.0"/>
+    </padding>
+
+    <left>
+        <VBox spacing="8.0">
+            <children>
+                <TitledPane text="Tools" collapsible="false">
+                    <content>
+                        <VBox spacing="5.0" style="-fx-padding: 8.0;">
+                            <children>
+                                <RadioButton text="Pen" selected="true" fx:id="radioPen">
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="toolGroup"/>
+                                    </toggleGroup>
+                                </RadioButton>
+                                <RadioButton text="Eraser" fx:id="radioEraser">
+                                    <toggleGroup>
+                                        <fx:reference source="toolGroup"/>
+                                    </toggleGroup>
+                                </RadioButton>
+                            </children>
+                        </VBox>
+                    </content>
+                </TitledPane>
+                <Button text="Clear" maxWidth="Infinity" onAction="#clearButtonPressed"/>
+            </children>
+        </VBox>
+    </left>
+
+    <center>
+        <Pane fx:id="drawingAreaPane"
+              style="-fx-background-color: white;"
+              onMouseDragged="#drawingAreaMouseDragged"/>
+    </center>
+</BorderPane>
