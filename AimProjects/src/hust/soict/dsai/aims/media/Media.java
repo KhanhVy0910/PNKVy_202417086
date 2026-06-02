@@ -22,6 +22,7 @@ public abstract class Media {
     }
 
     public Media(String title, String category, float cost) {
+        // Validate constructor input before creating the object.
         validateTitle(title);
         validateCost(cost);
         this.title = title;
@@ -77,6 +78,7 @@ public abstract class Media {
 
     @Override
     public boolean equals(Object obj) {
+        // Media objects are equal when their titles match.
         if (this == obj) {
             return true;
         }

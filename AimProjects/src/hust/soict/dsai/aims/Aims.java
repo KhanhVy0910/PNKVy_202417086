@@ -92,6 +92,7 @@ public class Aims {
     }
 
     private static void initializeStore() {
+        // Seed sample data for console demo.
         store.addMediaSilently(new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f));
         store.addMediaSilently(new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95f));
         store.addMediaSilently(new DigitalVideoDisc("Aladin", "Animation", 18.99f));
@@ -310,6 +311,7 @@ public class Aims {
     }
 
     private static void playMedia(Media media) {
+        // Centralized play handling with checked-exception reporting.
         if (media instanceof Playable) {
             try {
                 ((Playable) media).play();
@@ -322,6 +324,7 @@ public class Aims {
     }
 
     private static void printPlayerException(PlayerException e) {
+        // Print full exception details for debugging and user feedback.
         System.err.println(e.getMessage());
         System.err.println(e.toString());
         e.printStackTrace();

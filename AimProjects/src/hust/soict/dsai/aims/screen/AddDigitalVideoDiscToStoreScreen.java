@@ -41,6 +41,7 @@ public class AddDigitalVideoDiscToStoreScreen extends AddItemToStoreScreen {
 
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(e -> {
+            // Parse input, create the DVD, then return to the store screen.
             try {
                 DigitalVideoDisc dvd = new DigitalVideoDisc(
                         tfTitle.getText(),

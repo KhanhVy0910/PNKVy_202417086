@@ -38,6 +38,7 @@ public class AddBookToStoreScreen extends AddItemToStoreScreen {
 
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(e -> {
+            // Parse input, create the book, then return to the store screen.
             try {
                 Book book = new Book(tfTitle.getText(), tfCategory.getText(), Float.parseFloat(tfCost.getText()));
                 book.addAuthor(tfAuthor.getText());

@@ -83,6 +83,7 @@ public class CartScreenController {
 
     @FXML
     private void initialize() {
+        // Bind table columns, wire listeners, and hide action buttons initially.
         colMediaTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         colMediacategory.setCellValueFactory(new PropertyValueFactory<>("category"));
         colMediaCost.setCellValueFactory(new PropertyValueFactory<>("cost"));
@@ -123,6 +124,7 @@ public class CartScreenController {
 
     @FXML
     private void playSelectedMedia() {
+        // Play the currently selected media if it supports playback.
         Media selectedMedia = tblMedia.getSelectionModel().getSelectedItem();
         if (selectedMedia instanceof Playable) {
             try {
@@ -135,6 +137,7 @@ public class CartScreenController {
 
     @FXML
     void btnRemovePressed(ActionEvent event) {
+        // Remove the selected item from the cart.
         Media selectedMedia = tblMedia.getSelectionModel().getSelectedItem();
         if (selectedMedia != null && cart != null) {
             try {
@@ -153,6 +156,7 @@ public class CartScreenController {
 
     @FXML
     void btnPlaceOrderPressed(ActionEvent event) {
+        // Clear the cart and show a confirmation dialog.
         if (cart == null) {
             return;
         }
@@ -170,6 +174,7 @@ public class CartScreenController {
 
     @FXML
     void viewStorePressed(ActionEvent event) {
+        // Switch back to the store screen.
         if (store == null || cart == null) {
             return;
         }
@@ -178,6 +183,7 @@ public class CartScreenController {
 
     @FXML
     void viewCartPressed(ActionEvent event) {
+        // Re-open the cart screen with the shared state.
         if (store == null || cart == null) {
             return;
         }
@@ -185,6 +191,7 @@ public class CartScreenController {
     }
 
     private void bindTableToCart() {
+        // Wrap the cart list so it can be filtered dynamically.
         filteredMedia = new FilteredList<>(cart.getItemsOrdered(), media -> true);
         tblMedia.setItems(filteredMedia);
         showFilteredMedia();
@@ -192,6 +199,7 @@ public class CartScreenController {
     }
 
     private void showFilteredMedia() {
+        // Recompute the filter whenever the search text changes.
         if (filteredMedia == null) {
             return;
         }
@@ -219,6 +227,7 @@ public class CartScreenController {
     }
 
     private void updateButtonBar(Media media) {
+        // Show Remove always; show Play only for playable media.
         btnRemove.setVisible(true);
 
         boolean canPlay = media instanceof Playable;
@@ -226,6 +235,7 @@ public class CartScreenController {
     }
 
     private void refreshTotalCost() {
+        // Keep the total cost label in sync with the cart.
         if (lblTotalCost != null && cart != null) {
             lblTotalCost.setText(String.format("%.2f $", cart.totalCost()));
         }

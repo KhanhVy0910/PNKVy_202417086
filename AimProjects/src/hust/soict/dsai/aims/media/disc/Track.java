@@ -30,6 +30,7 @@ public class Track implements Playable {
 
     @Override
     public void play() throws PlayerException {
+        // A track must have positive length before it can play.
         if (getLength() <= 0) {
             System.err.println("ERROR: Track length is non-positive!");
             throw new PlayerException("ERROR: Track length is non-positive!");
