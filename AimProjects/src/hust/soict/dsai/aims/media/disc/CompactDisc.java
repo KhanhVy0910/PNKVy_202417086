@@ -1,5 +1,8 @@
 package hust.soict.dsai.aims.media.disc;
 
+import java.util.NoSuchElementException;
+import hust.soict.dsai.aims.exception.PlayerException;
+
 import java.util.ArrayList;
 
 public class CompactDisc extends Disc implements Playable {
@@ -38,10 +41,9 @@ public class CompactDisc extends Disc implements Playable {
 
     public void removeTrack(Track track) {
         if (!tracks.contains(track)) {
-            System.out.println("Track khong ton tai trong CD!");
-        } else {
-            tracks.remove(track);
+            throw new NoSuchElementException("Track not found in CD!");
         }
+        tracks.remove(track);
     }
 
     @Override
@@ -54,11 +56,19 @@ public class CompactDisc extends Disc implements Playable {
     }
 
     @Override
-    public void play() {
+    public void play() throws PlayerException {
+        if (getLength() <= 0) {
+            System.err.println("ERROR: CD length is non-positive!");
+            throw new PlayerException("ERROR: CD length is non-positive!");
+        }
         System.out.println("Playing CD: " + this.getTitle());
         System.out.println("CD length: " + this.getLength());
         for (Track track : tracks) {
-            track.play();
+            try {
+                track.play();
+            } catch (PlayerException e) {
+                throw e;
+            }
         }
     }
 
