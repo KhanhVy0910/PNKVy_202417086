@@ -19,6 +19,7 @@ public class Cart {
     }
 
     public void addMedia(Media media) {
+        // Enforce uniqueness and capacity before adding an item.
         if (itemsOrdered.contains(media)) {
             throw new IllegalStateException("Media already exists in cart.");
         }
@@ -30,6 +31,7 @@ public class Cart {
     }
 
     public void removeMedia(Media media) {
+        // Remove only if the media exists in the cart.
         if (itemsOrdered.contains(media)) {
             itemsOrdered.remove(media);
             System.out.println("Removed ! " + media.getTitle());
@@ -47,10 +49,12 @@ public class Cart {
     }
 
     public void sortByTitleCost() {
+        // Sort cart by title, then by cost.
         Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
     }
 
     public void sortByCostTitle() {
+        // Sort cart by cost, then by title.
         Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
     }
 

@@ -41,6 +41,7 @@ public class AddCompactDiscToStoreScreen extends AddItemToStoreScreen {
 
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(e -> {
+            // Parse input, create the CD, then return to the store screen.
             try {
                 CompactDisc cd = new CompactDisc(
                         tfTitle.getText(),

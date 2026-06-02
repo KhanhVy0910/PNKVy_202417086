@@ -34,6 +34,7 @@ public class Book extends Media {
     }
 
     public void removeAuthor(String authorName) {
+        // Remove author or report that the author does not exist.
         if (authors.contains(authorName)) {
             authors.remove(authorName);
             return;

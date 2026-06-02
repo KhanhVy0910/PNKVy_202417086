@@ -40,6 +40,7 @@ public class CompactDisc extends Disc implements Playable {
     }
 
     public void removeTrack(Track track) {
+        // Fail fast when the track is not present.
         if (!tracks.contains(track)) {
             throw new NoSuchElementException("Track not found in CD!");
         }
@@ -57,6 +58,7 @@ public class CompactDisc extends Disc implements Playable {
 
     @Override
     public void play() throws PlayerException {
+        // Play the CD first, then delegate playback to each track.
         if (getLength() <= 0) {
             System.err.println("ERROR: CD length is non-positive!");
             throw new PlayerException("ERROR: CD length is non-positive!");

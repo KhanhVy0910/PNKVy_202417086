@@ -10,6 +10,7 @@ public class Store {
     private ArrayList<Media> itemsInStore = new ArrayList<Media>();
 
     public void addMedia(Media media) {
+        // Enforce store uniqueness and capacity before adding.
         if (itemsInStore.contains(media)) {
             throw new IllegalStateException("Media already exists in store.");
         }
@@ -27,6 +28,7 @@ public class Store {
     }
 
     public void removeMedia(Media media) {
+        // Remove only if the media is currently in the store.
         if (itemsInStore.contains(media)) {
             itemsInStore.remove(media);
             System.out.println("Removed from store: " + media.getTitle());

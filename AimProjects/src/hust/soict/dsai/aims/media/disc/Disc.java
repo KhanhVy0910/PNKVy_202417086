@@ -36,6 +36,7 @@ public class Disc extends Media {
     }
 
     public void setLength(int length) {
+        // Reject invalid disc length early.
         if (length < 0) {
             throw new IllegalArgumentException("Length must be non-negative.");
         }
@@ -47,6 +48,7 @@ public class Disc extends Media {
     }
 
     public void setDirector(String director) {
+        // Reject empty director values.
         if (director == null || director.isBlank()) {
             throw new IllegalArgumentException("Director must not be empty.");
         }
