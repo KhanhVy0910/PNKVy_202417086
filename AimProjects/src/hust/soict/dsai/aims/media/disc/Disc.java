@@ -21,14 +21,14 @@ public class Disc extends Media {
     public Disc(String title, String category, String director, int length) {
         super(title);
         setCategory(category);
-        this.director = director;
-        this.length = length;
+        setDirector(director);
+        setLength(length);
     }
 
     public Disc(String title, String category, String director, int length, float cost) {
         super(title, category, cost);
         this.director = director;
-        this.length = length;
+        setLength(length);
     }
 
     public int getLength() {
@@ -36,6 +36,9 @@ public class Disc extends Media {
     }
 
     public void setLength(int length) {
+        if (length < 0) {
+            throw new IllegalArgumentException("Length must be non-negative.");
+        }
         this.length = length;
     }
 
@@ -44,6 +47,9 @@ public class Disc extends Media {
     }
 
     public void setDirector(String director) {
+        if (director == null || director.isBlank()) {
+            throw new IllegalArgumentException("Director must not be empty.");
+        }
         this.director = director;
     }
 }

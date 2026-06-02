@@ -7,8 +7,10 @@ import hust.soict.dsai.aims.media.disc.CompactDisc;
 import hust.soict.dsai.aims.media.disc.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.disc.Playable;
 import hust.soict.dsai.aims.media.disc.Track;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.store.Store;
 
+import javax.swing.JOptionPane;
 import java.util.Scanner;
 
 public class Aims {
@@ -309,10 +311,24 @@ public class Aims {
 
     private static void playMedia(Media media) {
         if (media instanceof Playable) {
-            ((Playable) media).play();
+            try {
+                ((Playable) media).play();
+            } catch (PlayerException e) {
+                printPlayerException(e);
+            }
         } else {
             System.out.println("This media cannot be played.");
         }
+    }
+
+    private static void printPlayerException(PlayerException e) {
+        System.err.println(e.getMessage());
+        System.err.println(e.toString());
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null,
+                e.getMessage(),
+                "Play Error",
+                JOptionPane.ERROR_MESSAGE);
     }
 
     private static Media createMediaFromInput() {

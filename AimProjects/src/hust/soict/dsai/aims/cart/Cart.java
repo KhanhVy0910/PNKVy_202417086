@@ -1,33 +1,41 @@
 package hust.soict.dsai.aims.cart;
 
+import hust.soict.dsai.aims.exception.LimitExceededException;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.disc.DigitalVideoDisc;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Cart {
     public static final int MAX_NUMBERS_ORDERD = 20;
-    private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
+    private ObservableList<Media> itemsOrdered =
+            FXCollections.observableArrayList();
+
+    public ObservableList<Media> getItemsOrdered() {
+        return itemsOrdered;
+    }
 
     public void addMedia(Media media) {
         if (itemsOrdered.contains(media)) {
-            System.out.println("Media already exists");
-        } else if (itemsOrdered.size() >= MAX_NUMBERS_ORDERD) {
-            System.out.println("Full !");
-        } else {
-            itemsOrdered.add(media);
-            System.out.println("Added ! " + media.getTitle());
+            throw new IllegalStateException("Media already exists in cart.");
         }
+        if (itemsOrdered.size() >= MAX_NUMBERS_ORDERD) {
+            throw new LimitExceededException("Cart is full.");
+        }
+        itemsOrdered.add(media);
+        System.out.println("Added ! " + media.getTitle());
     }
 
     public void removeMedia(Media media) {
         if (itemsOrdered.contains(media)) {
             itemsOrdered.remove(media);
             System.out.println("Removed ! " + media.getTitle());
-        } else {
-            System.out.println("Khong tim thay media trong gio hang");
+            return;
         }
+        throw new java.util.NoSuchElementException("Media not found in cart.");
     }
 
     public float totalCost() {

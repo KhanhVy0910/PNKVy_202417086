@@ -1,5 +1,6 @@
 package hust.soict.dsai.aims.store;
 
+import hust.soict.dsai.aims.exception.LimitExceededException;
 import hust.soict.dsai.aims.media.Media;
 
 import java.util.ArrayList;
@@ -10,13 +11,13 @@ public class Store {
 
     public void addMedia(Media media) {
         if (itemsInStore.contains(media)) {
-            System.out.println("Media already exists in store.");
-        } else if (itemsInStore.size() >= MAX_ITEMS_IN_STORE) {
-            System.out.println("The store is full.");
-        } else {
-            itemsInStore.add(media);
-            System.out.println("Added to store: " + media.getTitle());
+            throw new IllegalStateException("Media already exists in store.");
         }
+        if (itemsInStore.size() >= MAX_ITEMS_IN_STORE) {
+            throw new LimitExceededException("The store is full.");
+        }
+        itemsInStore.add(media);
+        System.out.println("Added to store: " + media.getTitle());
     }
 
     public void addMediaSilently(Media media) {
@@ -29,9 +30,9 @@ public class Store {
         if (itemsInStore.contains(media)) {
             itemsInStore.remove(media);
             System.out.println("Removed from store: " + media.getTitle());
-        } else {
-            System.out.println("Media not found in store.");
+            return;
         }
+        throw new java.util.NoSuchElementException("Media not found in store.");
     }
 
     public void displayStore() {
@@ -40,6 +41,10 @@ public class Store {
             System.out.println((i + 1) + ". " + itemsInStore.get(i).toString());
         }
         System.out.println("***********************");
+    }
+
+    public ArrayList<Media> getItemsInStore() {
+        return itemsInStore;
     }
 
     public Media searchByTitle(String title) {

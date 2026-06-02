@@ -22,6 +22,8 @@ public abstract class Media {
     }
 
     public Media(String title, String category, float cost) {
+        validateTitle(title);
+        validateCost(cost);
         this.title = title;
         this.category = category;
         this.cost = cost;
@@ -40,6 +42,7 @@ public abstract class Media {
     }
 
     public void setTitle(String title) {
+        validateTitle(title);
         this.title = title;
     }
 
@@ -56,16 +59,32 @@ public abstract class Media {
     }
 
     public void setCost(float cost) {
+        validateCost(cost);
         this.cost = cost;
+    }
+
+    private void validateTitle(String title) {
+        if (title == null || title.isBlank()) {
+            throw new IllegalArgumentException("Title must not be empty.");
+        }
+    }
+
+    private void validateCost(float cost) {
+        if (cost < 0) {
+            throw new IllegalArgumentException("Cost must be non-negative.");
+        }
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Media) {
-            Media media = (Media) obj;
-            return Objects.equals(title, media.getTitle());
+        if (this == obj) {
+            return true;
         }
-        return false;
+        if (!(obj instanceof Media)) {
+            return false;
+        }
+        Media media = (Media) obj;
+        return Objects.equals(title, media.getTitle());
     }
 
     @Override
